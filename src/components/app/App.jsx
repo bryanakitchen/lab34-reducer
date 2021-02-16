@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 const initialState = {
   before: [],
@@ -15,7 +15,7 @@ function reducer(state, action) {
         after: [current, ...after], 
         current: before[before.length - 1],
         // pick from previous
-        before: before.slice(0, -1), 
+        before: before.slice(0, -1)
         // removes last one
       };
     case 'CLICK_REDO':
@@ -69,6 +69,8 @@ const useRecord = (init) => {
 
 function App() {
   const { current, undo, redo, record } = useRecord('#FF0000');
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <>
