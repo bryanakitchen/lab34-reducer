@@ -15,7 +15,7 @@ function reducer(state, action) {
     case 'CLICK_UNDO':
       return { 
         ...state, 
-        // after: state.after ? [state.current, ...state.after] : [state.current], 
+        // after: after ? [current, ...after] : [current], 
         after: [current, ...after],
         current: before[before.length - 1],
         // pick from previous

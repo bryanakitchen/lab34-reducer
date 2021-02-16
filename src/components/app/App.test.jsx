@@ -8,7 +8,7 @@ describe('App component', () => {
   it('Changes the background color and state of undo and redo', async() => {
     render(<App />);
 
-    const backgroundLabel = screen.getByLabelText('RECORD');
+    const backgroundLabel = screen.getByLabelText('Color Input');
     const displayDiv = await screen.findByTestId('display');
 
     const undoButton = screen.getByText('undo');
