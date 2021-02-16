@@ -68,9 +68,12 @@ const useRecord = (init) => {
 };
 
 function App() {
-  const { current, undo, redo, record } = useRecord('#FF0000');
+  // const { current, undo, redo, record } = useRecord('#FF0000');
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const undo = () => dispatch({ type: 'CLICK_UNDO' });
+  const redo = () => dispatch({ type: 'CLICK_REDO' });
 
   return (
     <>
