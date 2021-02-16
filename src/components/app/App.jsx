@@ -7,6 +7,36 @@ const initialState = {
   after: []
 };
 
+function reducer(state, action) {
+  switch(action.type) {
+    case 'CLICK_UNDO':
+      return { 
+        ...state, 
+        after: [current, ...after], 
+        current: before[before.length - 1],
+        // pick from previous
+        before: before.slice(0, -1), 
+        // removes last one
+      };
+    case 'CLICK_REDO':
+      return { 
+        ...state, 
+        before: [...before, current],
+        current: after[0],
+        after: after.slice(1)
+      };
+    case 'RECORD':
+      return {
+        ...state,
+        before: [...before, current],
+        current: state
+        // is current supposed to be state?
+      };
+    default: 
+      return state;
+  }
+}
+
 const useRecord = (init) => {
   const [before, setBefore] = useState([]);
   const [current, setCurrent] = useState(init);
