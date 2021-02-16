@@ -12,7 +12,7 @@ function reducer(state, action) {
     case 'CLICK_UNDO':
       return { 
         ...state, 
-        after: [action.payload, ...state.after], 
+        after: [state.current, ...state.after], 
         current: state.before[state.before.length - 1],
         // pick from previous
         before: state.before.slice(0, -1)
@@ -21,7 +21,7 @@ function reducer(state, action) {
     case 'CLICK_REDO':
       return { 
         ...state, 
-        before: [...state.before, action.payload],
+        before: [...state.before, state.current],
         current: state.after[0],
         after: state.after.slice(1)
       };
