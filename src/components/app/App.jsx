@@ -8,27 +8,31 @@ const initialState = {
 };
 
 function reducer(state, action) {
+
+  const { current, before, after } = state;
+  
   switch(action.type) {
     case 'CLICK_UNDO':
       return { 
         ...state, 
-        after: [state.current, ...state.after], 
-        current: state.before[state.before.length - 1],
+        // after: state.after ? [state.current, ...state.after] : [state.current], 
+        after: [current, ...after],
+        current: before[before.length - 1],
         // pick from previous
-        before: state.before.slice(0, -1)
+        before: before.slice(0, -1)
         // removes last one
       };
     case 'CLICK_REDO':
       return { 
         ...state, 
-        before: [...state.before, state.current],
-        current: state.after[0],
-        after: state.after.slice(1)
+        before: [...before, current],
+        current: after[0],
+        after: after.slice(1)
       };
     case 'RECORD':
       return {
         ...state,
-        before: [...state.before, state.current],
+        before: [...before, current],
         current: action.payload 
         // comes from target.value - line 83
       };
