@@ -26,6 +26,6 @@ describe('App component', () => {
     expect(displayDiv).toHaveStyle({
       backgroundColor: '#00FF00'
     });
-
   });
+  
 });
