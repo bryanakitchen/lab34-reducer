@@ -9,21 +9,24 @@ describe('App component', () => {
     render(<App />);
 
     const backgroundLabel = screen.getByLabelText('Color Input');
-
     const displayDiv = await screen.findByTestId('display');
+
+    const undoButton = screen.getByText('undo');
 
     fireEvent.change(backgroundLabel, {
       target: {
         value: '#00FF00'
       }
     });
+
+    fireEvent.click(undoButton);
     
     expect(displayDiv).toHaveStyle({
-      backgroundColor: '#00FF00'
+      backgroundColor: '#FF0000'
     });
+
   });
 });
 
-// to have backgroundColor of current
 // fireEvent for onClick undo
 // fireEvent for onClick redo
