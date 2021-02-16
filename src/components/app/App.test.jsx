@@ -12,6 +12,7 @@ describe('App component', () => {
     const displayDiv = await screen.findByTestId('display');
 
     const undoButton = screen.getByText('undo');
+    const redoButton = screen.getByText('redo');
 
     fireEvent.change(backgroundLabel, {
       target: {
@@ -20,13 +21,11 @@ describe('App component', () => {
     });
 
     fireEvent.click(undoButton);
+    fireEvent.click(redoButton);
     
     expect(displayDiv).toHaveStyle({
-      backgroundColor: '#FF0000'
+      backgroundColor: '#00FF00'
     });
 
   });
 });
-
-// fireEvent for onClick undo
-// fireEvent for onClick redo
