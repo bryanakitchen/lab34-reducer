@@ -4,14 +4,15 @@ import App from './App';
 
 describe('App component', () => {
   afterEach(() => cleanup());
-  it('Changes the background color and state of undo and redo', () => {
+  
+  it('Changes the background color and state of undo and redo', async() => {
     render(<App />);
 
-    const backgroundInput = screen.findByDisplayValue('#FF0000');
+    const backgroundLabel = screen.getByLabelText('Color Input');
 
-    const displayDiv = screen.findByTestId('display');
+    const displayDiv = await screen.findByTestId('display');
 
-    fireEvent.change(backgroundInput, {
+    fireEvent.change(backgroundLabel, {
       target: {
         value: '#00FF00'
       }
