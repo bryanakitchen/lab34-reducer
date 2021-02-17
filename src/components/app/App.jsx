@@ -14,12 +14,14 @@ function reducer(state, action) {
   switch(action.type) {
     case 'CLICK_UNDO':
       return {
+        ...state,
         after: [current, ...after],
         current: before[before.length - 1],
         before: before.slice(0, -1)
       };
     case 'CLICK_REDO':
       return { 
+        ...state,
         before: [...before, current],
         current: after[0],
         after: after.slice(1)
